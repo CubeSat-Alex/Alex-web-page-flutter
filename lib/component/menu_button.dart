@@ -121,7 +121,7 @@ class CustomDropdownButton2 extends StatelessWidget {
         dropdownWidth: dropdownWidth ?? 130,
         dropdownPadding: dropdownPadding,
         dropdownDecoration: dropdownDecoration ??
-            BoxDecoration(
+            const BoxDecoration(
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(14) , bottomRight: Radius.circular(14)),
               color: Colors.black26
             ),
