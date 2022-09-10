@@ -1,10 +1,18 @@
+import 'package:alex_cube/shared/cubit.dart';
 import 'package:flutter/material.dart';
-
-import 'homeScreen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'component/constant.dart';
+import 'module/homeScreen.dart';
 
 
 void main() {
-  runApp(const MyApp());
+  // ignore: deprecated_member_use
+  BlocOverrides.runZoned(
+      (){
+        runApp(const MyApp());
+      },
+    blocObserver: MyBlocObserver(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,9 +21,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return   const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+    return   BlocProvider(
+      create: (BuildContext context) =>AppCubit(),
+      child:   MaterialApp(
+        title: "Alex Cube",
+        debugShowCheckedModeBanner: false,
+        home: HomeScreen(),
+      ),
     );
   }
 }

@@ -34,6 +34,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  url_launcher: ^6.1.5
+  bloc: ^8.0.3
+  flutter_bloc: ^8.0.1
+  dropdown_button2: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +65,15 @@ flutter:
   assets:
     - images/cubeLogo.png
     - images/background.jpg
+    - images/essam.png
+    - images/Linkedin-Logo.png
+    - images/Github-Logo.png
+    - images/Google-Logo.png
+    - images/menam.JPG
+    - images/saleh.png
+    - images/abd-elsalam.png
+    - images/ahmed.png
+    - images/crop_background.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
