@@ -1,4 +1,6 @@
+
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 class MyBlocObserver extends BlocObserver {
   @override
   void onCreate(BlocBase bloc) {
@@ -24,3 +26,4 @@ class MyBlocObserver extends BlocObserver {
     print('onClose -- ${bloc.runtimeType}');
   }
 }
+late double width,height;

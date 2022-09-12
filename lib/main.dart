@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return   BlocProvider(
       create: (BuildContext context) =>AppCubit(),
       child:   MaterialApp(
-        title: "Alex Cube",
+        title: "Alex_Cube",
         debugShowCheckedModeBanner: false,
         home: HomeScreen(),
       ),

@@ -1,14 +1,14 @@
 import 'dart:async';
-
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class DefualtBoxAction extends StatefulWidget {
+class RowButton extends StatefulWidget {
   final String textOfBox;
   final Function()? onTap;
   final bool selectButton;
   final double width;
-  const DefualtBoxAction({
+  const RowButton({
     Key? key,
     required this.textOfBox,
     required this.onTap,
@@ -16,17 +16,19 @@ class DefualtBoxAction extends StatefulWidget {
     required this.width,
   }) : super(key: key);
   @override
-  _DefualtBoxActionState createState() => _DefualtBoxActionState();
+  _RowButtonState createState() => _RowButtonState();
 }
 
-class _DefualtBoxActionState extends State<DefualtBoxAction> {
+class _RowButtonState extends State<RowButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: widget.width,
       height: 40,
+
       child: ElevatedButton(
         style: ButtonStyle(
+          overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
             shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
             backgroundColor:
                 MaterialStateProperty.all<Color>(Colors.transparent),
@@ -37,14 +39,70 @@ class _DefualtBoxActionState extends State<DefualtBoxAction> {
               ),
             )),
         child: Text(widget.textOfBox,
-            style: const TextStyle(
-              color: Colors.white,
+            style:  TextStyle(
+              color: widget.selectButton?Colors.white:Colors.grey,
             )),
         onPressed: widget.onTap,
       ),
     );
   }
 }
+
+class ColumnButton extends StatefulWidget {
+  final String textOfBox;
+  final Function()? onTap;
+  final bool selectButton;
+  final double width;
+  final double size;
+  const ColumnButton({
+    Key? key,
+    required this.textOfBox,
+    required this.onTap,
+    required this.selectButton,
+    required this.width,
+    required this.size,
+  }) : super(key: key);
+  @override
+  _ColumnButtonState createState() => _ColumnButtonState();
+}
+
+class _ColumnButtonState extends State<ColumnButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 40,
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(width: 1.0, color: widget.selectButton?Colors.white:Colors.transparent),
+          bottom: BorderSide(width: 1.0, color: widget.selectButton?Colors.white:Colors.transparent),
+        ),
+
+      ),
+      child: ElevatedButton(
+        style: ButtonStyle(
+            minimumSize: MaterialStateProperty.all<Size>(Size.zero), // Set this// and this
+            padding:MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.zero) ,
+            overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
+            shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
+            backgroundColor:
+            MaterialStateProperty.all<Color>(Colors.transparent),
+
+            ),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text(widget.textOfBox,
+              style:  TextStyle(
+                color: widget.selectButton?Colors.white:Colors.grey,
+                fontSize: widget.size,
+              )),
+        ),
+        onPressed: widget.onTap,
+      ),
+    );
+  }
+}
+
 
 class DetailBox extends StatefulWidget {
   final String name;
@@ -259,27 +317,123 @@ class _LinkButtonState extends State<LinkButton> {
 }
 
 
-Widget deviceDropDownMenu(BuildContext context) {
-  return PopupMenuButton(
-    color: Colors.green,
-      padding: const EdgeInsets.all(0.0),
-      onSelected: (sel) {
-        switch (sel) {
-          case 1:
-            break;
-          case 2:
-            break;
-          case 3:
-            break;
-          case 4:
-            break;
-        }
-      },
-      itemBuilder: (context) => List.generate(
-          4, (i) => PopupMenuItem(
-            value: i + 1,
-            child:const Text("name"),
+class CustomDropdownButton2 extends StatelessWidget {
+  final String hint;
+  final String? value;
+  final List<String> dropdownItems;
+  final ValueChanged<String?>? onChanged;
+  final Alignment? hintAlignment;
+  final Alignment? valueAlignment;
+  final double? buttonHeight, buttonWidth;
+  final EdgeInsetsGeometry? buttonPadding;
+  final BoxDecoration? buttonDecoration;
+  final int? buttonElevation;
+  final Widget? icon;
+  final double? iconSize;
+  final Color? iconEnabledColor;
+  final Color? iconDisabledColor;
+  final double? itemHeight;
+  final EdgeInsetsGeometry? itemPadding;
+  final double? dropdownHeight, dropdownWidth;
+  final BoxDecoration? dropdownDecoration;
+  final int? dropdownElevation;
+  final Radius? scrollbarRadius;
+  final bool changeState;
 
-          )),
-      child: const Icon(Icons.arrow_drop_down_sharp, size: 30));
+  const CustomDropdownButton2({
+    required this.hint,
+    required this.value,
+    required this.dropdownItems,
+    required this.onChanged,
+    required this.changeState,
+    this.hintAlignment,
+    this.valueAlignment,
+    this.buttonHeight,
+    this.buttonWidth,
+    this.buttonPadding,
+    this.buttonDecoration,
+    this.buttonElevation,
+    this.icon,
+    this.iconSize,
+    this.iconEnabledColor,
+    this.iconDisabledColor,
+    this.itemHeight,
+    this.itemPadding,
+    this.dropdownHeight,
+    this.dropdownWidth,
+    this.dropdownDecoration,
+    this.dropdownElevation,
+    this.scrollbarRadius,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButtonHideUnderline(
+      child: DropdownButton2(
+        //To avoid long text overflowing.
+        isExpanded: true,
+        hint: Container(
+          alignment: hintAlignment,
+          child: Text(
+            hint,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: const TextStyle(
+              fontSize: 14,
+              color: Colors.grey,
+            ),
+          ),
+        ),
+        style:  const TextStyle(color: Colors.black),
+        value: value,
+        items: dropdownItems
+            .map((item) => DropdownMenuItem<String>(
+          value: item,
+          child: Container(
+            alignment: valueAlignment,
+            child: Text(
+              item,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.white
+              ),
+            ),
+          ),
+        ))
+            .toList(),
+        onChanged: onChanged,
+
+        icon: const Icon(Icons.arrow_forward_ios_outlined),
+        iconSize: 12,
+        iconEnabledColor: Colors.grey,
+        iconDisabledColor: Colors.grey,
+        buttonHeight: 40,
+        buttonWidth:  140,
+        buttonPadding: const EdgeInsets.only(left: 14, right: 14),
+        buttonDecoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+            color: changeState?Colors.white:Colors.transparent,
+          ),
+        ),
+        buttonElevation: 0,
+        itemHeight: 35,
+        itemPadding:const EdgeInsets.only(left: 14, right: 14),
+        //Max height for the dropdown menu & becoming scrollable if there are more items. If you pass Null it will take max height possible for the items.
+        dropdownMaxHeight:230,
+        dropdownWidth: 130,
+        dropdownDecoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(14) , bottomRight: Radius.circular(14)),
+            color: Colors.black26
+        ),
+        dropdownElevation: 0 ,
+        scrollbarRadius: const Radius.circular(40),
+        //Null or Offset(0, 0) will open just under the button. You can edit as you want.
+        dropdownOverButton: false, //Default is false to show menu below button
+      ),
+    );
+  }
 }
