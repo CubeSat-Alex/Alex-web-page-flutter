@@ -55,7 +55,7 @@ class _ContactState extends State<Contact> {
           padding: EdgeInsets.only(
               bottom: 80, left: (width / 5), right: (width / 5)),
           child: const Text(
-            "Monitors :",
+            "Mentors :",
             style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w700,
