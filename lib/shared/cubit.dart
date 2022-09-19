@@ -10,19 +10,19 @@ class AppCubit extends Cubit<AppStates>
   static AppCubit get(context) => BlocProvider.of(context);
   List<bool> boolButton=[true,false,false,false,false,false];
   List<bool> boolSubsystems=[false,false,false,false,false,false];
-  String? dropdownValue ;
   List<String> items = ['OBC', 'ADCS', 'Telemetry','Communication','Payload', 'Structural'];
-  bool showButtons=false;
+  String? dropdownValue ;
   bool showSubSystems=false;
-  bool markSubsystem=false;
   bool openMobileMenu=false;
+  bool changeIcon=false;
+  bool showAllBudget=false;
+  int changeBudget=0;
   // ignore: non_constant_identifier_names
   void ClearButtons(int number,BuildContext context, String? newValue)
-  { int counter=5;
+  { int counter=6;
 
      while(counter>0)
        {
-         boolSubsystems[counter-1]=false;
          if(counter==number)
            {
              boolButton[counter-1]=true;
@@ -31,11 +31,20 @@ class AppCubit extends Cubit<AppStates>
            {
              boolButton[counter-1]=false;
            }
+         if(newValue==items[counter-1])
+           {
+             boolSubsystems[counter-1]=true;
+           }
+
+         else
+         {
+           boolSubsystems[counter-1]=false;
+         }
          counter--;
        }
      if(number==4)
        {
-         dropdownValue = newValue!;
+         dropdownValue = newValue;
        }
   openMobileMenu=false;
   emit(ChangeButton());
@@ -73,12 +82,7 @@ class AppCubit extends Cubit<AppStates>
     emit(SourceButton());
   }
   // ignore: non_constant_identifier_names
-  void openButton()
-  {
-    // ignore: deprecated_member_use
-    showButtons=!showButtons;
-    emit(OpenButton());
-  }
+
   void subsystemButton()
   {
     // ignore: deprecated_member_use
@@ -90,5 +94,18 @@ class AppCubit extends Cubit<AppStates>
     showSubSystems=false;
     openMobileMenu=!openMobileMenu;
     emit(MobileMenu());
+  }
+
+  void changeIcons(bool value)
+  {
+    changeIcon=value;
+    emit(ChangeIcon());
+  }
+
+  void showBudget(int number)
+  {
+    changeBudget=number;
+    showAllBudget=!showAllBudget;
+    emit(ShowBudgetPhoto());
   }
 }

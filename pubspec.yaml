@@ -63,23 +63,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/cubeLogo.png
-    - images/background.jpg
-    - images/essam.png
-    - images/Linkedin-Logo.png
-    - images/Github-Logo.png
-    - images/Google-Logo.png
-    - images/menam.png
-    - images/saleh.png
-    - images/abd-elsalam.png
-    - images/ahmed.png
-    - images/crop_background.jpg
-    - images/cube_background_2.jpg
-    - images/mahmoud.jpeg
-    - images/lamiaa.png
-    - images/logo-1.png
-    - images/logo-2.png
-    - images/azhar.png
+    - images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

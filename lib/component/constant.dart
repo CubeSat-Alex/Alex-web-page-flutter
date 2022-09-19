@@ -27,3 +27,4 @@ class MyBlocObserver extends BlocObserver {
   }
 }
 late double width,height;
+ScrollController scrollController = ScrollController();

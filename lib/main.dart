@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return   BlocProvider(
       create: (BuildContext context) =>AppCubit(),
-      child:   MaterialApp(
+      child:   const MaterialApp(
         title: "Alex_Cube",
         debugShowCheckedModeBanner: false,
         home: HomeScreen(),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../component/component.dart';
 import '../responsiv.dart';
@@ -12,17 +11,21 @@ class Contact extends StatefulWidget {
 
 class _ContactState extends State<Contact> {
   late double width, height;
+   GlobalKey key = GlobalKey(); // declare a global key
+
+//this is y - I think it's what you want
 
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: EdgeInsets.only(
-              top: 200, bottom: 80, left: (width / 5), right: (width / 5)),
+              top: 70, bottom: 80, left: (width / 5), right: (width / 5)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
@@ -231,11 +234,11 @@ class _ContactState extends State<Contact> {
         const Center(
           child: Text("Team Leader",
               style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 25,
                   fontWeight: FontWeight.w600,
                   color: Colors.black87)),
         ),
-        const SizedBox(height: 40),
+        const SizedBox(height: 30),
         const Center(
           child: DetailBox(
             linkedLink:
@@ -244,6 +247,7 @@ class _ContactState extends State<Contact> {
             gitLink: 'https://github.com/Abdelmenam-Tarek-Abdelmenam',
             gmailLink: 'moneam.elbahy@gmail.com',
             photo: "images/menam.png",
+            state: 'set',
           ),
         ),
         const SizedBox(height: 80),
@@ -258,6 +262,7 @@ class _ContactState extends State<Contact> {
                       gitLink: 'https://github.com/Essam-Eldin-Adel',
                       gmailLink: 'essameldin657@gmail.com',
                       photo: "images/essam.png",
+                      state: 'mobile',
                     ),
                     SizedBox(height: 80),
                     DetailBox(
@@ -267,6 +272,8 @@ class _ContactState extends State<Contact> {
                       gitLink: 'https://github.com/mohameed-abdelsalam',
                       gmailLink: 'mohameedabdelsalam24@gmail.com',
                       photo: "images/abd-elsalam.png",
+                      state: 'mobile',
+
                     ),
                   ]),
             ),
@@ -280,6 +287,8 @@ class _ContactState extends State<Contact> {
                     gitLink: 'https://github.com/Essam-Eldin-Adel',
                     gmailLink: 'essameldin657@gmail.com',
                     photo: "images/essam.png",
+                    state: 'tablet',
+
                   ),
                   SizedBox(width: 150),
                   DetailBox(
@@ -289,6 +298,7 @@ class _ContactState extends State<Contact> {
                     gitLink: 'https://github.com/mohameed-abdelsalam',
                     gmailLink: 'mohameedabdelsalam24@gmail.com',
                     photo: "images/abd-elsalam.png",
+                    state: 'tablet',
                   ),
                 ]),
             desktop: Row(
@@ -301,6 +311,8 @@ class _ContactState extends State<Contact> {
                     gitLink: 'https://github.com/Essam-Eldin-Adel',
                     gmailLink: 'essameldin657@gmail.com',
                     photo: "images/essam.png",
+                    state: 'desktop',
+
                   ),
                   SizedBox(width: 150),
                   DetailBox(
@@ -310,6 +322,8 @@ class _ContactState extends State<Contact> {
                     gitLink: 'https://github.com/mohameed-abdelsalam',
                     gmailLink: 'mohameedabdelsalam24@gmail.com',
                     photo: "images/abd-elsalam.png",
+                    state: 'desktop',
+
                   ),
                 ])),
         const SizedBox(height: 80),
@@ -323,6 +337,8 @@ class _ContactState extends State<Contact> {
                       gitLink: 'https://github.com/salehafahmy',
                       gmailLink: 'salehahmedibrahim@gmail.com',
                       photo: "images/saleh.png",
+                      state: 'mobile',
+
                     ),
                     SizedBox(height: 80),
                     DetailBox(
@@ -332,6 +348,8 @@ class _ContactState extends State<Contact> {
                       gitLink: 'https://github.com/Ahmed-Khaled-ibrahem',
                       gmailLink: 'essameldin657@gmail.com',
                       photo: "images/ahmed.png",
+                      state: 'mobile',
+
                     ),
                   ]),
             ),
@@ -344,6 +362,8 @@ class _ContactState extends State<Contact> {
                     gitLink: 'https://github.com/salehafahmy',
                     gmailLink: 'salehahmedibrahim@gmail.com',
                     photo: "images/saleh.png",
+                    state: 'tablet',
+
                   ),
                   SizedBox(width: 150),
                   DetailBox(
@@ -353,6 +373,8 @@ class _ContactState extends State<Contact> {
                     gitLink: 'https://github.com/Ahmed-Khaled-ibrahem',
                     gmailLink: 'essameldin657@gmail.com',
                     photo: "images/ahmed.png",
+                    state: 'tablet',
+
                   ),
                 ]),
             desktop: Row(
@@ -364,6 +386,8 @@ class _ContactState extends State<Contact> {
                     gitLink: 'https://github.com/salehafahmy',
                     gmailLink: 'salehahmedibrahim@gmail.com',
                     photo: "images/saleh.png",
+                    state: 'desktop',
+
                   ),
                   SizedBox(width: 150),
                   DetailBox(
@@ -373,6 +397,8 @@ class _ContactState extends State<Contact> {
                     gitLink: 'https://github.com/Ahmed-Khaled-ibrahem',
                     gmailLink: 'essameldin657@gmail.com',
                     photo: "images/ahmed.png",
+                    state: 'desktop',
+
                   ),
                 ])),
         const SizedBox(height: 80),
@@ -380,14 +406,38 @@ class _ContactState extends State<Contact> {
           padding: EdgeInsets.only(  left: (width / 5), right: (width / 5)),
           child: const Text('Supported by :',style: TextStyle(color: Colors.grey,fontSize: 17),),
         ),
-        Row(
+        Responsive.isMobile(context)?Column(
+          children: [
+            Row(
+             mainAxisAlignment: MainAxisAlignment.center,
+
+              children: [Image.asset('images/azhar.png',width: 100,height: 100,),
+                const SizedBox(width: 30),
+                Image.asset('images/logo-2.png',width: 150,height: 150,),
+                ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+
+              children: [
+                Image.asset('images/logo-1.png',width: 150,height: 150,),
+                const SizedBox(width: 35),
+                Image.asset('images/Alexandria_University_logo.png',width: 150,height: 150,),
+              ],
+            )
+
+
+          ],
+        ):Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('images/logo-2.png',width: 150,height: 150,),
-            const SizedBox(width: 20),
-            Image.asset('images/logo-1.png',width: 150,height: 150,),
-            const SizedBox(width: 25),
             Image.asset('images/azhar.png',width: 100,height: 100,),
+            const SizedBox(width: 30),
+            Image.asset('images/logo-2.png',width: 150,height: 150,),
+            const SizedBox(width: 35),
+            Image.asset('images/logo-1.png',width: 150,height: 150,),
+            const SizedBox(width: 35),
+            Image.asset('images/Alexandria_University_logo.png',width: 150,height: 150,),
           ],
         )
       ],

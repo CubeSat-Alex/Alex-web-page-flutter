@@ -103,14 +103,14 @@ class _ColumnButtonState extends State<ColumnButton> {
   }
 }
 
-
 class DetailBox extends StatefulWidget {
   final String name;
   final String gmailLink;
   final String linkedLink;
   final String gitLink;
   final String photo;
-  const DetailBox({Key? key, required this.name, required this.gmailLink, required this.linkedLink, required this.gitLink, required this.photo}) : super(key: key);
+  final String state;
+  const DetailBox({Key? key, required this.name, required this.gmailLink, required this.linkedLink, required this.gitLink, required this.photo, required this.state}) : super(key: key);
 
   @override
   State<DetailBox> createState() => _DetailBoxState();
@@ -217,7 +217,7 @@ class _DetailBoxState extends State<DetailBox> {
             ),
           ],
         ),
-      ),
+      )
     );
   }
 }
@@ -322,6 +322,7 @@ class CustomDropdownButton2 extends StatelessWidget {
   final String? value;
   final List<String> dropdownItems;
   final ValueChanged<String?>? onChanged;
+  final Function(bool) onMenuChange;
   final Alignment? hintAlignment;
   final Alignment? valueAlignment;
   final double? buttonHeight, buttonWidth;
@@ -339,13 +340,15 @@ class CustomDropdownButton2 extends StatelessWidget {
   final int? dropdownElevation;
   final Radius? scrollbarRadius;
   final bool changeState;
-
+  final bool changeIcon;
   const CustomDropdownButton2({
     required this.hint,
     required this.value,
     required this.dropdownItems,
     required this.onChanged,
+    required this.onMenuChange,
     required this.changeState,
+    required this.changeIcon,
     this.hintAlignment,
     this.valueAlignment,
     this.buttonHeight,
@@ -396,7 +399,7 @@ class CustomDropdownButton2 extends StatelessWidget {
               item,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: const TextStyle(
+              style:  const TextStyle(
                   fontSize: 14,
                   color: Colors.white
               ),
@@ -405,8 +408,9 @@ class CustomDropdownButton2 extends StatelessWidget {
         ))
             .toList(),
         onChanged: onChanged,
+        onMenuStateChange: onMenuChange,
 
-        icon: const Icon(Icons.arrow_forward_ios_outlined),
+        icon: changeIcon?const Icon(Icons.keyboard_arrow_up_outlined,size: 20):const Icon(Icons.arrow_forward_ios_outlined,size: 12),
         iconSize: 12,
         iconEnabledColor: Colors.grey,
         iconDisabledColor: Colors.grey,
@@ -427,7 +431,7 @@ class CustomDropdownButton2 extends StatelessWidget {
         dropdownWidth: 130,
         dropdownDecoration: const BoxDecoration(
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(14) , bottomRight: Radius.circular(14)),
-            color: Colors.black26
+            color: Colors.black38
         ),
         dropdownElevation: 0 ,
         scrollbarRadius: const Radius.circular(40),
@@ -437,3 +441,213 @@ class CustomDropdownButton2 extends StatelessWidget {
     );
   }
 }
+
+
+class OverviewText extends StatelessWidget {
+  final String state;
+  final BuildContext context;
+  const OverviewText({Key? key, required this.state, required this.context,}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double width=MediaQuery.of(context).size.width;
+    return SizedBox(
+      child: (state=='column')?
+          Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:  [
+          const Text("Alex-Cube is a 1U Cubesat satellite (10 * 10 * 10) dedicated to LEO region  and supported by the Egyptian Space Agency."
+              "it is Imaging Cubesat to capture images and videos of earth to use it later, and it's composed of six Subsystems named : ",
+              style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black87,height: 1.5
+              )),
+          const Padding(
+            padding: EdgeInsets.only(left: 20,top: 7),
+            child: Text( "•  Telemetry tracking and monitoring (TT&M)\n"
+                "•  communication System (CS)\n"
+                "•  Attitude Determination Control System (ADCS)\n"
+                "•  On Board Computer (OBC)\n"
+                "•  Payload (Payload)\n"
+                "•  Structure\n",
+                style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black87,height: 1.5
+                )),
+          ),
+          const SizedBox(height: 10),
+          Center(
+            child: Container(
+              height: 300,
+              width: 400,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(15)),
+                border: Border.all(width: 1, color: Colors.grey),
+                image: const DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('images/cube.jpg')),
+              ),
+            ),
+          ),
+        ],
+      ):
+          Row(
+        children: [
+          SizedBox(
+            width:(width/2.5) ,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text("Alex-sat is a 2U Cubesat satellite (20 * 10 * 10) dedicated to LEO region  and supported by the Egyptian Space Agency."
+                    "it is Imaging Cubesat to capture images and videos of earth to use it later, and it's composed of six Subsystems named : ",
+                    style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black87,height: 1.5
+                    )),
+                Padding(
+                  padding: EdgeInsets.only(left: 25,top: 7),
+                  child: Text( "•  Telemetry tracking and monitoring (TT&M)\n"
+                      "•  communication System (CS)\n"
+                      "•  Attitude Determination Control System (ADCS)\n"
+                      "•  On Board Computer (OBC)\n"
+                      "•  Payload (Payload)\n"
+                      "•  Structure\n",
+                      style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black87,height: 1.5
+                      )),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 20),
+          Container(
+            height: 300,
+            width: 400,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(15)),
+              border: Border.all(width: 1, color: Colors.grey),
+              image: const DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('images/cube.jpg')),
+            ),
+          ),
+        ],
+      )
+    );
+  }
+}
+
+class OBCSpi extends StatelessWidget {
+  final String state;
+  const OBCSpi({Key? key, required this.state}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double width=MediaQuery.of(context).size.width;
+    return SizedBox(
+        child: (state=='column')?
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children:  [
+            RichText(
+              text: const TextSpan(
+                // Here is the explicit parent TextStyle
+                style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black87,
+                    height: 1.5
+                ),
+                children: <TextSpan>[
+                  TextSpan(text:'Responsible for the communication with other modules. It ensures a good connection '
+                      'with other systems of the satellite and allows them to send information we use SPI'
+                      'as serial communication protocol to interface the OBC with the other subsystems.\n\n'),
+                  TextSpan(text: 'Why SPI:  ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  TextSpan(text: 'The raspberry pi simple SPI interface (4 pins) which help me to interface with '
+                      'many slaves (subsystems in our case) and transfer data between them with high speed '
+                      '( The fastest reported working speed is 32 MHz but we work with 2 MHZ to be suitable '
+                      'for all other subsystems) The SPI can choose which slave can receive or send using '
+                      'the SS (we use GPIO pins as a SS pin) \n\n'),
+                  TextSpan(text: 'the OBC connected to all subsystems using star connection.\n\n', style: TextStyle(fontWeight: FontWeight.bold))
+                ],
+              ),
+            ),
+            Center(child: Image.asset('images/spi.png',)),
+          ],
+        ):
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+
+          children: [
+            SizedBox(
+              width:(width/2.5) ,
+              child: RichText(
+                text: const TextSpan(
+                  // Here is the explicit parent TextStyle
+                  style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black87,
+                      height: 1.5
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(text:'Responsible for the communication with other modules. It ensures a good connection '
+                        'with other systems of the satellite and allows them to send information we use SPI'
+                        'as serial communication protocol to interface the OBC with the other subsystems.\n\n'),
+                    TextSpan(text: 'Why SPI:  ', style: TextStyle(fontWeight: FontWeight.bold)),
+                    TextSpan(text: 'The raspberry pi simple SPI interface (4 pins) which help me to interface with '
+                        'many slaves (subsystems in our case) and transfer data between them with high speed '
+                        '( The fastest reported working speed is 32 MHz but we work with 2 MHZ to be suitable '
+                        'for all other subsystems) The SPI can choose which slave can receive or send using '
+                        'the SS (we use GPIO pins as a SS pin) \n\n'),
+                    TextSpan(text: 'the OBC connected to all subsystems using star connection.\n\n', style: TextStyle(fontWeight: FontWeight.bold))
+
+                  ],
+                ),
+              ),
+            ),
+
+            Center(child: Image.asset('images/spi.png',)),
+          ],
+        )
+    );
+  }
+}
+class OBCStorage extends StatelessWidget {
+  final String state;
+  const OBCStorage({Key? key, required this.state}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double width=MediaQuery.of(context).size.width;
+    return SizedBox(
+        child: (state=='column')?
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children:  [
+             Padding(
+              padding: EdgeInsets.only(left: (width/50),top: 7),
+              child: const Text( "•  Telemetry reading from all sensors once is about 264 bytes.\n"
+                  "•   One video with duration 5 seconds is 130 kb on average .\n"
+                  "•   The average image size on disk is 56 kb .\n",
+                  style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black87,height: 1.7
+                  )),
+            ),
+            Center(child: Image.asset('images/storage.png',width: 500,height: 150,)),
+
+          ],
+        ):
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width:(width/2.9) ,
+              child:Padding(
+                padding: EdgeInsets.only(left: (width/50),top: 7),
+                child: const Text( "•  Telemetry reading from all sensors once is about 264 bytes.\n"
+                    "•   One video with duration 5 seconds is 130 kb on average .\n"
+                    "•   The average image size on disk is 56 kb .\n",
+                    style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black87,height: 1.7
+                    )),
+              ),
+            ),
+            Center(child: Image.asset('images/storage.png',width: 500,height: 150,)),
+          ],
+        )
+    );
+  }
+}
+
+
+
