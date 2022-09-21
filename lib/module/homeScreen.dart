@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                                       image: DecorationImage(
                                         fit: BoxFit.fill,
                                         image: AssetImage(
-                                            'images/background.jpg'),
+                                            'images/homeScreen/background.jpg'),
                                       ),
                                     ),
                                   ), // background
@@ -68,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                                             height: width / 15,
                                             child: Center(
                                                 child: Text(
-                                                  " Open Source Cubesat In Egypt ",
+                                                  " Egyptian Open Source CubeSat ",
                                                   style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: (width / 30)),
@@ -86,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                                                   overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
                                                   shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
                                                   backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),),
-                                                onPressed: () {scrollController.animateTo(450, duration: const Duration(milliseconds: 500), curve: Curves.easeIn);},
+                                                onPressed: () {scrollController.animateTo(700, duration: const Duration(milliseconds: 500), curve: Curves.easeIn);},
                                                 child:  Text("Show more", style: TextStyle(color: Colors.white.withOpacity(0.97),fontSize: width/85),)), //show more button
                                           )) : Container()
                                           //show more button
@@ -135,7 +135,7 @@ class HomeScreen extends StatelessWidget {
                                   decoration: const BoxDecoration(
                                     image: DecorationImage(
                                         fit: BoxFit.fill,
-                                        image: AssetImage('images/budget.png')),
+                                        image: AssetImage('images/homeScreen/budget.png')),
                                   ),
                                 ),
                                 const SizedBox(height: 50,)
@@ -224,7 +224,7 @@ class HomeScreen extends StatelessWidget {
                                                   ColumnButton(onTap: () {cubit.ClearMobileButtons(3,context,'Telemetry'); }, textOfBox: 'Telemetry', selectButton: cubit.boolSubsystems[2], width: 100, size: 13,),
                                                   ColumnButton(onTap: () {cubit.ClearMobileButtons(4,context,'Communication'); }, textOfBox: 'Communication', selectButton: cubit.boolSubsystems[3], width: 100, size: 13,),
                                                   ColumnButton(onTap: () {cubit.ClearMobileButtons(5,context,'Payload'); }, textOfBox: 'Payload', selectButton: cubit.boolSubsystems[4], width: 100, size: 13,),
-                                                  ColumnButton(onTap: () {cubit.ClearMobileButtons(6,context,'Structural'); }, textOfBox: 'Structural', selectButton: cubit.boolSubsystems[5], width: 100, size: 13,),
+                                                  ColumnButton(onTap: () {cubit.ClearMobileButtons(6,context,'Structure'); }, textOfBox: 'Structure', selectButton: cubit.boolSubsystems[5], width: 100, size: 13,),
 
                                                 ],
                                               ),

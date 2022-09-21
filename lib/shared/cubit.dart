@@ -4,23 +4,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../component/constant.dart';
+
 class AppCubit extends Cubit<AppStates>
 {
   AppCubit() : super(AppInitialState());
   static AppCubit get(context) => BlocProvider.of(context);
   List<bool> boolButton=[true,false,false,false,false,false];
   List<bool> boolSubsystems=[false,false,false,false,false,false];
-  List<String> items = ['OBC', 'ADCS', 'Telemetry','Communication','Payload', 'Structural'];
+  List<String> items = ['OBC', 'ADCS', 'Telemetry','Communication','Payload', 'Structure'];
   String? dropdownValue ;
   bool showSubSystems=false;
   bool openMobileMenu=false;
   bool changeIcon=false;
   bool showAllBudget=false;
   int changeBudget=0;
+  double start=700;
   // ignore: non_constant_identifier_names
   void ClearButtons(int number,BuildContext context, String? newValue)
   { int counter=6;
-
+  scrollController.animateTo(0, duration: const Duration(milliseconds: 900), curve: Curves.easeIn);
      while(counter>0)
        {
          if(counter==number)
@@ -53,6 +56,8 @@ class AppCubit extends Cubit<AppStates>
   // ignore: non_constant_identifier_names
   void ClearMobileButtons(int number,BuildContext context, String? newValue)
   { int counter=6;
+  scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
+
   while(counter>0)
   {
     boolButton[counter-1] = false;

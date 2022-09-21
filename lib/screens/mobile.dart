@@ -18,7 +18,7 @@ class Mobile extends StatelessWidget {
           decoration: const BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage('images/crop_background.jpg'),
+              image: AssetImage('images/homeScreen/crop_background.jpg'),
             ),
           ),
         ),
@@ -33,7 +33,7 @@ class Mobile extends StatelessWidget {
                 const  Text("Alex Cube",
                     style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 35)),
                 const SizedBox(width: 7),
-                Image.asset('images/cubeLogo.png',width: 40,height: 40),
+                Image.asset('images/homeScreen/cubeLogo.png',width: 40,height: 40),
                 const Expanded(child:  SizedBox()),
                 Container(
                   margin: const EdgeInsets.all(0),

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class RowButton extends StatefulWidget {
   final String textOfBox;
@@ -135,17 +136,21 @@ class _DetailBoxState extends State<DetailBox> {
           width: 1,
         ),
       ),
-      child: MouseRegion(
-        onEnter: (event) => {
-          setState(() {
-            changePhoto = false;
-          })
-        },
-        onExit: (event) => {
-          setState(() {
-            visibleText=false;
-            changePhoto = true;
-          })
+      child: VisibilityDetector(
+        key:  Key(widget.state),
+        onVisibilityChanged: (visibilityInfo) {
+          var visiblePercentage = visibilityInfo.visibleFraction * 100;
+           setState(() {
+             if(visiblePercentage==100)
+             {
+               changePhoto = false;
+             }
+             else
+             {
+               visibleText=false;
+               changePhoto = true;
+             }
+           });
         },
         child: Column(
           children: [
@@ -307,8 +312,8 @@ class _LinkButtonState extends State<LinkButton> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
             )),
-        child: (widget.changeState==1)?Image.asset('images/Github-Logo.png',fit: BoxFit.cover,):
-        ((widget.changeState==2)?Image.asset('images/Google-Logo.png',fit: BoxFit.cover):Image.asset('images/Linkedin-Logo.png',fit: BoxFit.cover)),
+        child: (widget.changeState==1)?Image.asset('images/contact/Github-Logo.png',fit: BoxFit.cover,):
+        ((widget.changeState==2)?Image.asset('images/contact/Google-Logo.png',fit: BoxFit.cover):Image.asset('images/contact/Linkedin-Logo.png',fit: BoxFit.cover)),
         // ignore: deprecated_member_use
         onPressed: () =>launch(widget.link)
       ),
@@ -481,7 +486,7 @@ class OverviewText extends StatelessWidget {
                 border: Border.all(width: 1, color: Colors.grey),
                 image: const DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage('images/cube.jpg')),
+                    image: AssetImage('images/overview/cube.jpg')),
               ),
             ),
           ),
@@ -521,7 +526,7 @@ class OverviewText extends StatelessWidget {
               border: Border.all(width: 1, color: Colors.grey),
               image: const DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage('images/cube.jpg')),
+                  image: AssetImage('images/overview/cube.jpg')),
             ),
           ),
         ],
@@ -560,11 +565,11 @@ class OBCSpi extends StatelessWidget {
                       '( The fastest reported working speed is 32 MHz but we work with 2 MHZ to be suitable '
                       'for all other subsystems) The SPI can choose which slave can receive or send using '
                       'the SS (we use GPIO pins as a SS pin) \n\n'),
-                  TextSpan(text: 'the OBC connected to all subsystems using star connection.\n\n', style: TextStyle(fontWeight: FontWeight.bold))
+                  TextSpan(text: '*The OBC connected to all subsystems using star connection.\n\n', style: TextStyle(fontWeight: FontWeight.bold))
                 ],
               ),
             ),
-            Center(child: Image.asset('images/spi.png',)),
+            Center(child: Image.asset('images/obc/spi.png',)),
           ],
         ):
         Row(
@@ -591,14 +596,14 @@ class OBCSpi extends StatelessWidget {
                         '( The fastest reported working speed is 32 MHz but we work with 2 MHZ to be suitable '
                         'for all other subsystems) The SPI can choose which slave can receive or send using '
                         'the SS (we use GPIO pins as a SS pin) \n\n'),
-                    TextSpan(text: 'the OBC connected to all subsystems using star connection.\n\n', style: TextStyle(fontWeight: FontWeight.bold))
+                    TextSpan(text: '*The OBC connected to all subsystems using star connection.\n\n', style: TextStyle(fontWeight: FontWeight.bold))
 
                   ],
                 ),
               ),
             ),
 
-            Center(child: Image.asset('images/spi.png',)),
+            Center(child: Image.asset('images/obc/spi.png',)),
           ],
         )
     );
@@ -624,7 +629,7 @@ class OBCStorage extends StatelessWidget {
                   style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black87,height: 1.7
                   )),
             ),
-            Center(child: Image.asset('images/storage.png',width: 500,height: 150,)),
+            Center(child: Image.asset('images/obc/storage.png',width: 500,height: 150,)),
 
           ],
         ):
@@ -642,7 +647,7 @@ class OBCStorage extends StatelessWidget {
                     )),
               ),
             ),
-            Center(child: Image.asset('images/storage.png',width: 500,height: 150,)),
+            Center(child: Image.asset('images/obc/storage.png',width: 500,height: 150,)),
           ],
         )
     );

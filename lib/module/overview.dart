@@ -19,18 +19,18 @@ class OverView extends StatelessWidget {
             child: Text("Overview",style: TextStyle(fontSize: 40,fontWeight: FontWeight.w700,color: Colors.black87
             ),),
           ),
-          const SizedBox(height: 100,),
+          const SizedBox(height: 70,),
           Responsive.isMobile(context) ?OverviewText(state: 'column', context: context)
               :(Responsive.isTablet(context) ? OverviewText(state: 'column', context: context)
               : OverviewText(state: 'row', context: context)),
-          const SizedBox(height: 30),
+          const SizedBox(height: 25),
           const Text("Scope :",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black87)),
           const SizedBox(height: 15),
           const Text("Alex-Cube mission aspires to be the first fully open source satellite in Egypt, with all satellite "
               "subsystems designed from the ground up in an open source hardware and software manner.\n",
               style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black87,height: 1.5
               )),
-          const SizedBox(height: 30),
+          const SizedBox(height: 25),
           const Text("Mission Objectives :",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black87)),
           const SizedBox(height: 15),
           const Text("The Alex-cube project's mission goals are to have the camera on the cube capture "
@@ -41,13 +41,13 @@ class OverView extends StatelessWidget {
               )),
           Padding(
             padding: EdgeInsets.only(left: (width/50),top: 7),
-            child: const Text( "•  TT&M collect data and send it to OBC by SPI (serial peripheral interface) then OBC send it to GS(Ground Station)  \n"
-                "•  The ADCS subsystem receive order from GS by OBC for drive servo motors to certain position  \n"
-                "•  Payload subsystem successfully  take (image or video) in Certain Position then save it for sending it within Session by OBC. \n",
+            child: const Text( "•  TT&M collect data and send it to OBC by SPI (serial peripheral interface) then OBC send it to GS(Ground Station).\n"
+                "•  The ADCS subsystem receive order from GS by OBC for drive servo motors to certain position.\n"
+                "•  Payload subsystem successfully  take (image or video) in Certain Position then save it for sending it within Session by OBC.\n",
                 style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black87,height: 1.7
                 )),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 25),
           const Text("Project Development Phases :",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black87)),
           const SizedBox(height: 15),
           const Text("A space project needs a big management to be successful. That’s why all space projects  "
@@ -107,7 +107,7 @@ class OverView extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 50),
           const Text("system functional Description :",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black87)),
           const SizedBox(height: 15),
           const Text("The following diagram gives a general idea of the functionality of each subsystem and of the interactions between the subsystems."
@@ -118,23 +118,31 @@ class OverView extends StatelessWidget {
           Center(child: SizedBox(
               height: 550,
               width: 1000,
-              child: Image.asset('images/systems.png'))),
+              child: Image.asset('images/overview/systems.png'))),
+          const SizedBox(height: 10),
           Row(
             children:  [
-              const Text('For more details about the project read this '),
-              TextButton(
-                  onPressed:(){
+              const Text('For more details about the project',style: TextStyle(fontWeight: FontWeight.bold),),
+              ElevatedButton(
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(horizontal: 0)) ,
+                      shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
+                      overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
+                      ),
+                  child: const Text(' Click here',style: TextStyle(color: Colors.blue)),
+                  onPressed: () {
                     cubit.boolButton[0]=false;
                     scrollController.animateTo(0,
                         duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
-                    cubit.showBudget(1);}, child: const Text('Pdf\'s',style: TextStyle(color: Colors.blue))),
-
+                    cubit.showBudget(1);}
+              ),
 
             ],
           ),
-
+          const SizedBox(height: 25),
           Padding(
-            padding: EdgeInsets.only(top: 30,bottom: 0,left:Responsive.isMobile(context)?10:width/(height/70),right:Responsive.isMobile(context)?0:width/(height/70)),
+            padding: EdgeInsets.only(left:Responsive.isMobile(context)?10:width/(height/70),right:Responsive.isMobile(context)?0:width/(height/70)),
             child: const Text('Supported by :',style: TextStyle(color: Colors.grey,fontSize: 17),),
           ),
           Responsive.isMobile(context)?Column(
@@ -142,32 +150,30 @@ class OverView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
 
-                children: [Image.asset('images/azhar.png',width: 100,height: 100,),
+                children: [Image.asset('images/contact/logo-azhar.png',width: 100,height: 100,),
                   const SizedBox(width: 70),
-                  Image.asset('images/logo-2.png',width: 150,height: 150,),
+                  Image.asset('images/contact/logo-egsa.png',width: 150,height: 150,),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
 
                 children: [
-                  Image.asset('images/logo-1.png',width: 150,height: 150,),
+                  Image.asset('images/contact/logo-eut.png',width: 150,height: 150,),
                   const SizedBox(width: 35),
-                  Image.asset('images/Alexandria_University_logo.png',width: 150,height: 150,),
+                  Image.asset('images/contact/logo-alex.png',width: 150,height: 150,),
                 ],
               )
-
-
             ],
           ):Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('images/azhar.png',width: 100,height: 100,),
-              const SizedBox(width: 30),
-              Image.asset('images/logo-2.png',width: 150,height: 150,),
-              Image.asset('images/logo-1.png',width: 150,height: 150,),
-              const SizedBox(width: 30),
-              Image.asset('images/Alexandria_University_logo.png',width: 150,height: 150,),
+              Image.asset('images/contact/logo-azhar.png',width: 100,height: 100,),
+              const SizedBox(width: 25),
+              Image.asset('images/contact/logo-egsa.png',width: 150,height: 150,),
+              Image.asset('images/contact/logo-eut.png',width: 150,height: 150,),
+              const SizedBox(width: 25),
+              Image.asset('images/contact/logo-alex.png',width: 150,height: 150,),
             ],
           )
         ],

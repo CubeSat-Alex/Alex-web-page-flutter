@@ -17,7 +17,7 @@ class Tablet extends StatelessWidget {
           decoration: const BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage('images/crop_background.jpg'),
+              image: AssetImage('images/homeScreen/crop_background.jpg'),
             ),
           ),
         ),
@@ -29,7 +29,7 @@ class Tablet extends StatelessWidget {
               const  Text("Alex Cube",
                   style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 45)),
               const SizedBox(width: 7),
-              Image.asset('images/cubeLogo.png',width: 50,height: 50),
+              Image.asset('images/homeScreen/cubeLogo.png',width: 50,height: 50),
               const Expanded(child: SizedBox(),),
               Column(
                 children: [

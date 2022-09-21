@@ -11,7 +11,7 @@ class OBC extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 120,bottom: 80,left:Responsive.isMobile(context)?10:width/(height/70),right:Responsive.isMobile(context)?0:width/(height/70)),
+      padding: EdgeInsets.only(top: 80,bottom: 80,left:Responsive.isMobile(context)?10:width/(height/70),right:Responsive.isMobile(context)?0:width/(height/70)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:  [
@@ -20,16 +20,14 @@ class OBC extends StatelessWidget {
             ),),
           ),
           const SizedBox(height: 70,),
-          const Text("On Board Computer (OBC) :",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black87)),
+          const Text("Introduction:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black87)),
           const SizedBox(height: 15),
-          const Text("The On Board Computer, or OBC, is the main brain of the satellite and has different missions such as control,"
+          const Text("The On Board Computer (OBC), is the main brain of the satellite and has different missions such as control,"
               " sending orders and monitor to all other subsystems.  reception and storage of information of all  subsystems in"
               " CubeSat then sending this information  to Ground Station.\n",
               style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black87,height: 1.5
               )),
-
-
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
           const Text("Subsystem division :",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black87)),
           const SizedBox(height: 15),
           const Text("The OBC can be divided into :",
@@ -57,10 +55,10 @@ class OBC extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 35),
           const Text("Hardware :",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black87)),
-          const SizedBox(height: 15),
-          Center(child: Image.asset('images/raspberry.png',width: 500,height: 300,)),
+          const SizedBox(height: 20),
+          Center(child: Image.asset('images/obc/raspberry.png',width: 500,height: 300,)),
           const Text("To select the best microcontroller, we have to take care about many things such as power consumption, "
               "temperature, operating voltage, I/O and serial bus compatibility to avoid some issues."
               "In our case we use raspberry pi 3 model B+ as the OBC.\n",
@@ -69,9 +67,10 @@ class OBC extends StatelessWidget {
           const Text("Software :",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black87)),
           const SizedBox(height: 15),
           const Text("The software component controls the processor, its operation and control functionality. "
-              "in real time using threads. The RPI can handle 269 threads including system threads according to htop\n",
+              "in real time using threads. The RPI can handle 269 threads including system threads according to htop.\n",
               style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black87,height: 1.5
               )),
+          const SizedBox(height: 20),
           const Text("OBC Interface :",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black87)),
           const SizedBox(height: 15),
           Responsive.isMobile(context) ?const OBCSpi(state: 'column')
@@ -108,7 +107,7 @@ class OBC extends StatelessWidget {
                 ),
                 TextSpan(text: 'Storage:  ', style: TextStyle(fontWeight: FontWeight.bold)),
                 TextSpan(text: 'The raspberry pi has Micro SD port for loading your operating system and storing data ( in our case we used 32GB SD'
-                    'card but after install the OS and some software the available is 23 GB) '),
+                    'card but after install the OS and some software the available is 23 GB):'),
               ],
             ),
           ),

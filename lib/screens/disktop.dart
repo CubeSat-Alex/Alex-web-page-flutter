@@ -17,7 +17,7 @@ class Disktop extends StatelessWidget {
           decoration: const BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage('images/crop_background.jpg'),
+              image: AssetImage('images/homeScreen/crop_background.jpg'),
             ),
           ),
         ), //crop background
@@ -27,7 +27,7 @@ class Disktop extends StatelessWidget {
             children: [
               const  Text("Alex Cube", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 50)),
               const SizedBox(width: 7),
-              Image.asset('images/cubeLogo.png',width: 60,height: 60),
+              Image.asset('images/homeScreen/cubeLogo.png',width: 60,height: 60),
               const Expanded(child: SizedBox(),),
               Center(
                 child: Row(
